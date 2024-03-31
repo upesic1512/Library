@@ -1,5 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminbookinventory.aspx.cs" Inherits="WebLibrary.adminbookinventory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="bookinventory.aspx.cs" Inherits="WebLibrary.bookinventory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -18,7 +21,8 @@
                   <div class="row">
                      <div class="col">
                         <center>
-                           <img width="100px" src="imgs/books.png" />
+                            
+                           <img id="imgview" Height="150px" Width="100px" src="imgs/books1.png" />
                         </center>
                      </div>
                   </div>
@@ -29,20 +33,20 @@
                   </div>
                   <div class="row">
                      <div class="col">
-                        <asp:FileUpload class="form-control" ID="FileUpload1" runat="server" />
+                        <asp:FileUpload onchange="readURL(this);" class="form-control" ID="FileUpload1" runat="server" />
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-3">
+                     <div class="col-md-4">
                         <label>Book ID</label>
                         <div class="form-group">
                            <div class="input-group">
-                              <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Member ID"></asp:TextBox>
-                              <asp:LinkButton class="btn btn-primary" ID="LinkButton4" runat="server"><i class="fas fa-check-circle"></i></asp:LinkButton>
+                              <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Book ID"></asp:TextBox>
+                              <asp:Button class="form-control btn btn-primary" ID="Button4" runat="server" Text="Go" OnClick="Button4_Click" />
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-9">
+                     <div class="col-md-8">
                         <label>Book Name</label>
                         <div class="form-group">
                            <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Book Name"></asp:TextBox>
@@ -55,11 +59,11 @@
                         <div class="form-group">
                            <asp:DropDownList class="form-control" ID="DropDownList1" runat="server">
                               <asp:ListItem Text="English" Value="English" />
-                              <asp:ListItem Text="Hindi" Value="Hindi" />
-                              <asp:ListItem Text="Marathi" Value="Marathi" />
+                              
+                              <asp:ListItem Text="Serbian" Value="Marathi" />
                               <asp:ListItem Text="French" Value="French" />
                               <asp:ListItem Text="German" Value="German" />
-                              <asp:ListItem Text="Urdu" Value="Urdu" />
+                              
                            </asp:DropDownList>
                         </div>
                         <label>Publisher Name</label>
@@ -167,13 +171,13 @@
                   </div>
                   <div class="row">
                      <div class="col-4">
-                        <asp:Button ID="Button1" class="btn btn-lg btn-block btn-success" runat="server" Text="Add" OnClick="Button1_Click" />
+                        <asp:Button ID="Button1" class="btn btn-lg btn-block btn-success" runat="server" Text="Add" OnClick="Button1_Click"  />
                      </div>
                      <div class="col-4">
-                        <asp:Button ID="Button3" class="btn btn-lg btn-block btn-warning" runat="server" Text="Update" />
+                        <asp:Button ID="Button3" class="btn btn-lg btn-block btn-warning" runat="server" Text="Update" OnClick="Button3_Click"  />
                      </div>
                      <div class="col-4">
-                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-danger" runat="server" Text="Delete" />
+                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-danger" runat="server" Text="Delete" OnClick="Button2_Click"  />
                      </div>
                   </div>
                </div>
@@ -196,14 +200,84 @@
                         <hr>
                      </div>
                   </div>
-                  <div class="row">
+                                <div class="row">
+
+                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LibraryDBConnectionString %>" SelectCommand="SELECT * FROM [book_master_tbl]"></asp:SqlDataSource>
                      <div class="col">
-                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1">
+                           <Columns>
+                              <asp:BoundField DataField="book_id" HeaderText="ID" ReadOnly="True" SortExpression="book_id" >
+                                 <ControlStyle Font-Bold="True" />
+                                 <ItemStyle Font-Bold="True" />
+                              </asp:BoundField>
+                              <asp:TemplateField>
+                                 <ItemTemplate>
+                                    <div class="container-fluid">
+                                       <div class="row">
+                                          <div class="col-lg-10">
+                                             <div class="row">
+                                                <div class="col-12">
+                                                   <asp:Label ID="Label1" runat="server" Text='<%# Eval("book_name") %>' Font-Bold="True" Font-Size="X-Large"></asp:Label>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                   <span>Author - </span>
+                                                   <asp:Label ID="Label2" runat="server" Font-Bold="True" Text='<%# Eval("author_name") %>'></asp:Label>
+                                                   &nbsp;| <span><span>&nbsp;</span>Genre - </span>
+                                                   <asp:Label ID="Label3" runat="server" Font-Bold="True" Text='<%# Eval("genre") %>'></asp:Label>
+                                                   &nbsp;| 
+                                                   <span>
+                                                      Language -<span>&nbsp;</span>
+                                                      <asp:Label ID="Label4" runat="server" Font-Bold="True" Text='<%# Eval("language") %>'></asp:Label>
+                                                   </span>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                   Publisher -
+                                                   <asp:Label ID="Label5" runat="server" Font-Bold="True" Text='<%# Eval("publisher_name") %>'></asp:Label>
+                                                    &nbsp;| Pages -
+                                                   <asp:Label ID="Label7" runat="server" Font-Bold="True" Text='<%# Eval("no_pages") %>'></asp:Label>
+                                                   &nbsp;| Edition -
+                                                   <asp:Label ID="Label8" runat="server" Font-Bold="True" Text='<%# Eval("edition") %>'></asp:Label>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                   Cost -
+                                                   <asp:Label ID="Label9" runat="server" Font-Bold="True" Text='<%# Eval("book_cost") %>'></asp:Label>
+                                                   &nbsp;| Actual Stock -
+                                                   <asp:Label ID="Label10" runat="server" Font-Bold="True" Text='<%# Eval("actual_stock") %>'></asp:Label>
+                                                   &nbsp;| Available Stock -
+                                                   <asp:Label ID="Label11" runat="server" Font-Bold="True" Text='<%# Eval("current_stock") %>'></asp:Label>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                   Description -
+                                                   <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Italic="True" Font-Size="Smaller" Text='<%# Eval("book_description") %>'></asp:Label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-lg-2">
+                                             <asp:Image class="img-fluid" ID="Image1" runat="server" ImageUrl='<%# Eval("book_img_link") %>' />
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </ItemTemplate>
+                              </asp:TemplateField>
+                           </Columns>
+                        </asp:GridView>
                      </div>
-                  </div>
+
+
                </div>
             </div>
          </div>
       </div>
    </div>
+    </div>
+
+
 </asp:Content>

@@ -33,7 +33,7 @@
                         <div class="form-group">
                            <div class="input-group">
                               <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Member ID"></asp:TextBox>
-                              <asp:LinkButton class="btn btn-primary" ID="LinkButton4" runat="server"><i class="fas fa-check-circle"></i></asp:LinkButton>
+                              <asp:LinkButton class="btn btn-primary" ID="LinkButton4" runat="server" OnClick="LinkButton4_Click1"><i class="fas fa-check-circle"></i></asp:LinkButton>
                            </div>
                         </div>
                      </div>
@@ -48,19 +48,16 @@
                         <div class="form-group">
                            <div class="input-group">
                               <asp:TextBox CssClass="form-control mr-1" ID="TextBox7" runat="server" placeholder="Account Status" ReadOnly="True"></asp:TextBox>
-                              <asp:LinkButton class="btn btn-success mr-1" ID="LinkButton1" runat="server"><i class="fas fa-check-circle"></i></asp:LinkButton>
-                              <asp:LinkButton class="btn btn-warning mr-1" ID="LinkButton2" runat="server"><i class="far fa-pause-circle"></i></asp:LinkButton>
-                              <asp:LinkButton class="btn btn-danger mr-1" ID="LinkButton3" runat="server"><i class="fas fa-times-circle"></i></asp:LinkButton>
+                              <asp:LinkButton class="btn btn-success mr-1" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click1"><i class="fas fa-check-circle"></i></asp:LinkButton>
+                              <asp:LinkButton class="btn btn-warning mr-1" ID="LinkButton2" runat="server" OnClick="LinkButton2_Click1"><i class="far fa-pause-circle"></i></asp:LinkButton>
+                              <asp:LinkButton class="btn btn-danger mr-1" ID="LinkButton3" runat="server" OnClick="LinkButton3_Click1"><i class="fas fa-times-circle"></i></asp:LinkButton>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-3">
-                        <label>DOB</label>
-                        <div class="form-group">
-                           <asp:TextBox CssClass="form-control" ID="TextBox8" runat="server" placeholder="DOB" ReadOnly="True"></asp:TextBox>
-                        </div>
+                     <div class="col-md-2">
+                        
                      </div>
                      <div class="col-md-4">
                         <label>Contact No</label>
@@ -105,7 +102,7 @@
                   </div>
                   <div class="row">
                      <div class="col-8 mx-auto">
-                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-danger" runat="server" Text="Delete User Permanently" />
+                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-danger" runat="server" Text="Delete User Permanently" OnClick="Button2_Click1" />
                      </div>
                   </div>
                </div>
@@ -128,10 +125,14 @@
                         <hr>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col">
-                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
-                     </div>
+                   <div class="row">
+     <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+     ConnectionString="<%$ ConnectionStrings:LibraryDBConnectionString%>"
+     SelectCommand="SELECT member_id, full_name, email, city, account_status FROM [member_master_tbl]" DataSourceMode="DataSet"></asp:SqlDataSource>
+     <div class="col">
+         <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" DataSourceID="SqlDataSource1"></asp:GridView>
+     </div>
+ </div>
                   </div>
                </div>
             </div>

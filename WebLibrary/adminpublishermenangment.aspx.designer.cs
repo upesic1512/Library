@@ -11,7 +11,7 @@ namespace WebLibrary
 {
 
 
-    public partial class authormenangmentpage
+    public partial class adminauthormenangment
     {
 
         /// <summary>

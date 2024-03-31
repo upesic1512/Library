@@ -51,16 +51,18 @@ namespace WebLibrary
                 da.Fill(dt);
                 if (dt.Rows.Count >= 1)
                 {
+                    con.Close();
                     return true;
                 }
                 else
                 {
+                    con.Close();
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                Response.Write("<script>alert (`" + ex.Message + "`);</script>");
                 return false;
             }
         }

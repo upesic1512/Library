@@ -122,11 +122,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adminauthormenangment.aspx" />
+    <Content Include="adminpublishermenangment.aspx" />
     <Content Include="adminbookinventory.aspx" />
     <Content Include="adminlogin.aspx" />
     <Content Include="authormenangmentpage.aspx" />
+    <Content Include="bookinventory.aspx" />
     <Content Include="bookissuingpage.aspx" />
+    <Content Include="book_inventory\books1.png" />
     <Content Include="bootstrap\css\bootstrap-grid.css" />
     <Content Include="bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="bootstrap\css\bootstrap-grid.rtl.css" />
@@ -2244,17 +2246,19 @@
     <Content Include="imgs\writer.png" />
     <Content Include="loginpage.aspx" />
     <Content Include="usermenangment.aspx" />
+    <Content Include="userprofile.aspx" />
     <Content Include="usersignuppage.aspx" />
+    <Content Include="ViewBooks.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adminauthormenangment.aspx.cs">
-      <DependentUpon>adminauthormenangment.aspx</DependentUpon>
+    <Compile Include="adminpublishermenangment.aspx.cs">
+      <DependentUpon>adminpublishermenangment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminauthormenangment.aspx.designer.cs">
-      <DependentUpon>adminauthormenangment.aspx</DependentUpon>
+    <Compile Include="adminpublishermenangment.aspx.designer.cs">
+      <DependentUpon>adminpublishermenangment.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminbookinventory.aspx.cs">
       <DependentUpon>adminbookinventory.aspx</DependentUpon>
@@ -2276,6 +2280,13 @@
     </Compile>
     <Compile Include="authormenangmentpage.aspx.designer.cs">
       <DependentUpon>authormenangmentpage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="bookinventory.aspx.cs">
+      <DependentUpon>bookinventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bookinventory.aspx.designer.cs">
+      <DependentUpon>bookinventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="bookissuingpage.aspx.cs">
       <DependentUpon>bookissuingpage.aspx</DependentUpon>
@@ -2316,12 +2327,26 @@
     <Compile Include="usermenangment.aspx.designer.cs">
       <DependentUpon>usermenangment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="userprofile.aspx.cs">
+      <DependentUpon>userprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userprofile.aspx.designer.cs">
+      <DependentUpon>userprofile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="usersignuppage.aspx.cs">
       <DependentUpon>usersignuppage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="usersignuppage.aspx.designer.cs">
       <DependentUpon>usersignuppage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewBooks.aspx.cs">
+      <DependentUpon>ViewBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewBooks.aspx.designer.cs">
+      <DependentUpon>ViewBooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
